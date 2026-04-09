@@ -484,5 +484,89 @@ class Demo{
 		return f(arr, index+1, sum);
 	}
 }
-*/
 
+Q11. Find Second Maximum
+👉 Return second largest element
+Input: [10,5,8,20,15]
+Output: 15
+
+class Demo{
+	public static void main(String[]args){
+		int[] arr = {10,5,8,20,15}; 
+		Demo d = new Demo();
+		int secMax = d.f(arr,0,0,0);
+		System.out.println(secMax);
+	}
+
+	int f(int[] arr, int index, int max, int secMax){
+		if(index == arr.length){
+			return secMax;
+		} 	
+	
+		if(arr[index] > max){
+			secMax = max;
+			max =arr[index]; 		
+		} 
+
+		if(arr[index] > secMax && arr[index] < max){
+			secMax = arr[index]; 		
+		} 
+		
+		return f(arr, index+1, max, secMax);
+	}
+}
+
+
+Q12. Check Strictly Increasing
+👉 Return true if strictly increasing (no equal allowed)
+Input: [1,2,3,3]
+Output: false
+
+class Demo{
+	public static void main(String[]args){
+		int[] arr = {1,2,3,3}; 
+		Demo d = new Demo();
+		boolean increase = d.f(arr,0);
+		System.out.println(increase);
+	}
+
+	boolean f(int[] arr, int index){
+		if(index == arr.length){
+			return true;
+		} 	
+	
+		if(arr[index] >= arr[index+1]){
+           		return false;
+        	}
+
+		return f(arr, index+1);
+	}
+}
+
+
+Q20. Check if Array is Strictly Decreasing
+👉 Return true if strictly decreasing
+Input: [9,7,5,2]
+Output: true
+
+class Demo{
+	public static void main(String[]args){
+		int[] arr = {9,7,5,2}; 
+		Demo d = new Demo();
+		boolean decrease = d.f(arr,0);
+		System.out.println(decrease);
+	}
+
+	boolean f(int[] arr, int index){
+		if(index == arr.length-1){
+			return true;
+		} 	
+	
+		if(arr[index] <= arr[index+1]){
+           		return false;
+        	}
+
+		return f(arr, index+1);
+	}
+}
+*/
