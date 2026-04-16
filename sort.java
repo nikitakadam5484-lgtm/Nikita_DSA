@@ -58,7 +58,7 @@ class Demo{
 }
 
 Bubble Sort :-
-*/
+
 
 import java.util.*;
 class Demo{
@@ -79,3 +79,115 @@ class Demo{
 	}
 }
 
+
+
+import java.util.*;
+class Demo{
+	public static void main(String[]args){
+		int[] arr = {2,4,9,1,7,3};
+		int n = arr.length;
+
+		for(int i = 0; i < n-1; i++){
+			for(int j = 0; j < n-i-1; j++){
+				if(arr[j] > arr[j+1]){
+					int temp = arr[j];
+					arr[j] = arr[j+1];
+					arr[j+1] = temp;
+				}
+			}			
+		}
+		System.out.println(Arrays.toString(arr));	
+	}
+}
+
+
+import java.util.*;
+class Demo{
+	public static void main(String[]args){
+		int[] arr = {3,5,7,2,6};
+		int n = arr.length;
+
+		for(int i = 0; i < n; i++){
+			int currentElement = arr[i];
+			int left = i-1;
+
+			while(left >= 0 && arr[left] > currentElement){
+				arr[left+1] = arr[left];
+				left --;
+			}
+		
+			arr[left+1] = currentElement;			
+		}
+		
+		System.out.println(Arrays.toString(arr));	
+	}
+}
+*/
+
+import java.util.*;
+class Demo {
+    public static void main(String[] args) {
+        int arr[] = {8, 3, 5, 2};
+        
+        f(arr, 0, arr.length - 1);
+        System.out.println(Arrays.toString(arr));
+        
+    }
+
+    static void f(int arr[], int low, int high) {
+	
+        if(low >= high) {
+		return;
+	}
+        int mid = (low + high) / 2;
+
+           
+        f(arr, low, mid);
+        f(arr, mid + 1, high);
+
+        merge(arr, low, mid, high);
+        
+    }
+
+    static void merge(int arr[], int low, int mid, int high) {
+        int[] merged = new int[high - low +1]; 
+
+        int blue = low;
+        int green = mid +1;
+	int red = 0;
+
+        
+
+        while(blue <= mid && green <= high) {
+            if(arr[blue] <= arr[green]) {
+                merged[red] = arr[blue];
+                red++;
+		blue++; 
+            } 
+	    else {
+                merged[red] = arr[green];
+                red++;
+		green++;
+            }
+            
+        }
+
+        
+        while(blue <= mid) {
+            merged[red] = arr[blue];
+            red++;
+	    blue++;
+        }
+
+        while(green <= high) {
+            merged[red] = arr[green];
+            red++;
+	    green++;
+        }
+
+	for(int i = 0; i < merged.length; i++){
+		arr[low + i] = merged[i];
+	}
+
+    }
+}
