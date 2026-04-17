@@ -525,7 +525,11 @@ Q6. Most Frequent Character in String
 Return most frequent character in the string
 Example:
 String str = “apple”
-→ Output: ‘a’
+→ Output: ‘p’
+
+
+For Loop Approach :-
+
 
 class Demo {
     public static void main(String[] args) {
@@ -556,17 +560,15 @@ class Demo {
 
 HashMap Approach :-
 
-*/
-
 import java.util.HashMap;
 class Demo{
 	public static void main(String[]args){
 		
 		String str = "apple"; 
 		
-		HashMap<String,Integer> hm = new HashMap<>();
+		HashMap<Character,Integer> hm = new HashMap<>();
 
-		for(int i = 0; i < str.length; i++){
+		for(int i = 0; i < str.length(); i++){
 			if(hm.containsKey(str.charAt(i))){
 				hm.put(str.charAt(i), hm.getOrDefault(str.charAt(i),1)+1);
 			}
@@ -574,12 +576,98 @@ class Demo{
 				hm.put(str.charAt(i),1);
 			}
 		}
-
-		for(int key : hm.keySet()){
-			if(hm.get(key) == 1){
-				System.out.print(key +" ");
+		int max = 0;
+		char ch = ' ';
+		for(char key : hm.keySet()){
+			if(hm.get(key) > max){
+				max = hm.get(key);
+				ch = key;
 			}
 		}
+		System.out.println(ch);
+	}
+}
+
+
+Frequency Approach :-
+
+import java.util.*;
+class Demo{
+	public static void main(String[] args){
+		
+		String str = "apple";
+
+		int[] freq = new int[26];
+
+		for(int i = 0; i < str.length(); i++){
+			freq[str.charAt(i) - 'a']++;
+		}
+		System.out.println(Arrays.toString(freq)); 
+		
+		int max = 0;
+		char ch = ' ';
+		for(int i = 0; i < freq.length; i++){
+			if(freq[i] > max){
+				max = freq[i];
+				ch = (char) (i + 'a');
+			}
+		}
+		System.out.println(ch);
+	}
+}
+
+
+
+Q7. Second Least Frequent Element in an Array
+Return second least frequent element in an array
+Example:
+arr = [1,1,2,2,2,3]
+→ Output: 1
+
+
+For Loop Approach :-
+
+
+*/
+class Demo{
+	public static void main(String[]args){
+
+		int[] arr = {1,1,2,2,2,3}; 
+		int min = arr[0];
+		int secMin = 0;
+
+		for(int i = 0; i < arr.length; i++){
+
+			int count = 0;
+
+			for(int j = 0; j < arr.length; j++){
+				if(arr[i] == arr[j]){
+					count ++;								
+				}
+			} 
+
+			if(count < min){
+				secMin = min;
+				min = count;
+			}
+			else if (count < secMin && count > min){
+				secMin = count;
+			}
+		}
+		
+		for(int i = 0; i < arr.length; i++) {
+            		int count = 0;
+
+            		for(int j = 0; j < arr.length; j++) {
+                		if(arr[i] == arr[j]) {
+                    			count++;
+                		}
+            		}
+
+            		if(count == secMin) {
+                		System.out.println(arr[i]);	
+            		}
+       		 }
 	}
 }
 
